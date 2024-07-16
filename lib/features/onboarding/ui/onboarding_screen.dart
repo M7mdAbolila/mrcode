@@ -20,18 +20,19 @@ class OnboardingScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              verticalSpace(50),
               SvgPicture.asset(
-                'assets/svgs/typing-bro.svg',
+                'assets/svgs/onboarding.svg',
                 height: 300.h,
               ),
               Text(
                 'TechReads',
-                style: AppStyles.font35WhiteBold,
+                style: AppStyles.font36Black700Weight,
               ),
-              verticalSpace(20),
+              verticalSpace(15),
               Text(
                 'Explore our tech book collection and take\n notes on the go.',
-                style: AppStyles.font14WhiteBold,
+                style: AppStyles.font16Black500Weight,
                 textAlign: TextAlign.center,
               ),
               verticalSpace(100),

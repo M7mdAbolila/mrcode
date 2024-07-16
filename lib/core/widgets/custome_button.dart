@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mrcode/core/theme/colors.dart';
 
 import '../theme/styles.dart';
 
@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       style: ButtonStyle(
         backgroundColor:
-            WidgetStateProperty.all(backgroundColor ?? Colors.white),
+            WidgetStateProperty.all(backgroundColor ?? AppColors.blue),
       ),
       child: SizedBox(
         height: height ?? 50.h,
@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: textStyle ?? AppStyles.font20PurpleBold,
+            style: textStyle ?? AppStyles.font20White700Weight,
           ),
         ),
       ),

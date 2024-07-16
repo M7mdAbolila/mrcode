@@ -18,8 +18,6 @@ class MrcodeApp extends StatelessWidget {
         title: 'MrCode',
         theme: ThemeData(
           fontFamily: 'Quicksand',
-          brightness: Brightness.dark,
-          primaryColor: Colors.blueGrey,
         ),
         onGenerateRoute: appRouter.generateRoute,
         initialRoute: Routes.onboardingScreen,
