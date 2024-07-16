@@ -5,6 +5,7 @@ import 'package:mrcode/core/helpers/spacing.dart';
 import 'package:mrcode/core/widgets/custom_scaffold.dart';
 import 'package:mrcode/features/login/ui/widgets/social_media_login.dart';
 
+import '../../../core/routing/routes.dart';
 import '../../../core/theme/styles.dart';
 import 'widgets/auth_button.dart';
 import 'widgets/dont_have_account.dart';
@@ -38,7 +39,7 @@ class LoginScreen extends StatelessWidget {
               verticalSpace(70),
               AuthButton(
                 text: 'Sign in',
-                onTap: () {},
+                onTap: () => context.pushReplacementNamed(Routes.homeScreen),
               ),
               verticalSpace(40),
               const SocialMediaLogin(),
