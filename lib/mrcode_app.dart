@@ -16,9 +16,13 @@ class MrcodeApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'MrCode',
-        theme: ThemeData.dark(),
+        theme: ThemeData(
+          fontFamily: 'Quicksand',
+          brightness: Brightness.dark,
+          primaryColor: Colors.blueGrey,
+        ),
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.loginScreen,
+        initialRoute: Routes.onboardingScreen,
       ),
     );
   }
