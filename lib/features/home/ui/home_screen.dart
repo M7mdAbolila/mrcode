@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
         ),
         centerTitle: true,
         leading: Builder(
-          builder: (context) => IconButton( 
+          builder: (context) => IconButton(
             icon: const Icon(
               Icons.menu,
               color: Colors.white,

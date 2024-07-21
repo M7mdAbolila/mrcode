@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mrcode/core/helpers/extensions.dart';
+import 'package:mrcode/core/routing/routes.dart';
 import 'package:mrcode/core/theme/colors.dart';
 import 'package:mrcode/core/theme/styles.dart';
 
 class HomeBookItem extends StatelessWidget {
-  const HomeBookItem({super.key});
-
+  const HomeBookItem({
+    super.key,
+    required this.tag,
+  });
+  final String tag;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: 55.h),
       child: GestureDetector(
+        onTap: () =>
+            context.pushNamed(Routes.bookDetailsScreen, arguments: tag),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
@@ -27,9 +34,12 @@ class HomeBookItem extends StatelessWidget {
               left: 20.w,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.r),
-                child: Image.asset(
-                  'assets/images/test.jpg',
-                  width: 100.w,
+                child: Hero(
+                  tag: tag,
+                  child: Image.asset(
+                    'assets/images/test.jpg',
+                    width: 100.w,
+                  ),
                 ),
               ),
             ),
@@ -40,7 +50,7 @@ class HomeBookItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 195.w,
+                    width: 190.w,
                     child: Text(
                       'Mohamed Abolila Harry Potter',
                       overflow: TextOverflow.ellipsis,

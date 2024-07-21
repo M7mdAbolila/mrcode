@@ -14,7 +14,9 @@ class HomeBooksListView extends StatelessWidget {
         clipBehavior: Clip.none,
         itemCount: 8,
         itemBuilder: (context, index) {
-          return const HomeBookItem();
+          return HomeBookItem(
+            tag: index.toString(),
+          );
         },
       ),
     );
