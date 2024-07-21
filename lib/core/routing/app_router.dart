@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mrcode/core/routing/routes.dart';
 
+import '../../features/book_details/ui/book_details_screen.dart';
 import '../../features/home/ui/home_screen.dart';
 import '../../features/login/ui/login_screen.dart';
 import '../../features/onboarding/ui/onboarding_screen.dart';
@@ -27,7 +28,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const OnboardingScreen(),
         );
-
+      case Routes.bookDetailsScreen:
+        final String? tag = settings.arguments as String?;
+        return MaterialPageRoute(
+          builder: (_) => BookDetailsScreen(
+            tag: tag,
+          ),
+        );
       default:
         return null;
     }
