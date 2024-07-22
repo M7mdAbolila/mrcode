@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mrcode/core/di/dependency_injection.dart';
 import 'package:mrcode/core/routing/routes.dart';
+import 'package:mrcode/features/home/logic/cubit/get_books_cubit.dart';
 
 import '../../features/home/ui/home_screen.dart';
 import '../../features/login/ui/login_screen.dart';
@@ -21,7 +24,10 @@ class AppRouter {
         );
       case Routes.homeScreen:
         return MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => GetBooksCubit(getIt()),
+            child: const HomeScreen(),
+          ),
         );
       case Routes.onboardingScreen:
         return MaterialPageRoute(
