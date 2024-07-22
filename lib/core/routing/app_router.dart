@@ -35,11 +35,8 @@ class AppRouter {
           builder: (_) => const OnboardingScreen(),
         );
       case Routes.bookDetailsScreen:
-        final String? tag = settings.arguments as String?;
         return MaterialPageRoute(
-          builder: (_) => BookDetailsScreen(
-            tag: tag,
-          ),
+          builder: (_) => const BookDetailsScreen(),
         );
       default:
         return null;

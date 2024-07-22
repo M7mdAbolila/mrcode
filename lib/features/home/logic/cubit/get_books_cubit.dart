@@ -10,9 +10,9 @@ class GetBooksCubit extends Cubit<GetBooksState> {
   final GetBooksRepo _getBooksRepo;
   GetBooksCubit(this._getBooksRepo) : super(GetBooksInitial());
 
-  Future<void> getBooks() async {
+  Future<void> getBooks({required String category}) async {
     emit(GetBooksLoading());
-    var result = await _getBooksRepo.getBooks('computer');
+    var result = await _getBooksRepo.getBooks(category);
     result.fold(
       (failure) => emit(
         GetBooksFailure(failure.errMessage),

@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mrcode/features/home/logic/cubit/get_books_cubit.dart';
 import 'package:mrcode/features/home/ui/widgets/home_book_item.dart';
 
 class HomeBooksListView extends StatelessWidget {
@@ -9,14 +13,29 @@ class HomeBooksListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15.w),
-      child: ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        clipBehavior: Clip.none,
-        itemCount: 8,
-        itemBuilder: (context, index) {
-          return HomeBookItem(
-            tag: index.toString(),
-          );
+      child: BlocBuilder<GetBooksCubit, GetBooksState>(
+        builder: (context, state) {
+          if (state is GetBooksSuccess) {
+            log('Books length: ${state.books!.length}');
+            return ListView.builder(
+              clipBehavior: Clip.none,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: state.books!.length,
+              itemBuilder: (context, index) {
+                log('Index: $index');
+                return HomeBookItem(
+                  bookModel: state.books![index],
+                );
+              },
+            );
+          } else if (state is GetBooksFailure) {
+            return Center(
+              child: Text(state.errMessage ?? 'Error'),
+            );
+          } else {
+            return const CircularProgressIndicator();
+          }
         },
       ),
     );

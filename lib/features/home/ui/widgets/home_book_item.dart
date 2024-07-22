@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mrcode/core/helpers/extensions.dart';
@@ -5,19 +6,20 @@ import 'package:mrcode/core/routing/routes.dart';
 import 'package:mrcode/core/theme/colors.dart';
 import 'package:mrcode/core/theme/styles.dart';
 
+import '../../data/models/get_books_response.dart';
+
 class HomeBookItem extends StatelessWidget {
   const HomeBookItem({
     super.key,
-    required this.tag,
+    required this.bookModel,
   });
-  final String tag;
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: 55.h),
       child: GestureDetector(
-        onTap: () =>
-            context.pushNamed(Routes.bookDetailsScreen, arguments: tag),
+        onTap: () => context.pushNamed(Routes.bookDetailsScreen),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
@@ -35,9 +37,9 @@ class HomeBookItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.r),
                 child: Hero(
-                  tag: tag,
-                  child: Image.asset(
-                    'assets/images/test.jpg',
+                  tag: bookModel.id!,
+                  child: CachedNetworkImage(
+                    imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
                     width: 100.w,
                   ),
                 ),
@@ -52,14 +54,14 @@ class HomeBookItem extends StatelessWidget {
                   SizedBox(
                     width: 190.w,
                     child: Text(
-                      'Mohamed Abolila Harry Potter',
+                      bookModel.volumeInfo!.title!,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: AppStyles.font20White700Weight,
                     ),
                   ),
                   Text(
-                    'Harry Potter ',
+                    bookModel.volumeInfo!.authors![0],
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: AppStyles.font16Black500Weight,

@@ -8,9 +8,8 @@ import 'package:mrcode/features/book_details/ui/widgets/build_divider.dart';
 class BookDetailsScreen extends StatelessWidget {
   const BookDetailsScreen({
     super.key,
-    required this.tag,
   });
-  final String? tag;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,17 +27,14 @@ class BookDetailsScreen extends StatelessWidget {
                 'Harry Potter',
                 style: AppStyles.font20White700Weight,
               ),
-              background: Hero(
-                tag: tag!,
-                child: Container(
-                  padding: const EdgeInsets.all(65),
-                  color: Colors.grey[800],
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.r),
-                    child: Image.asset(
-                      'assets/images/test.jpg',
-                      fit: BoxFit.fill,
-                    ),
+              background: Container(
+                padding: const EdgeInsets.all(65),
+                color: Colors.grey[800],
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.r),
+                  child: Image.asset(
+                    'assets/images/test.jpg',
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
