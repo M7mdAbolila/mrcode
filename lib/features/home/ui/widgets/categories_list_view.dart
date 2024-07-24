@@ -14,7 +14,7 @@ class CategoriesListView extends StatelessWidget {
       height: 105.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 8,
+        itemCount: 5,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(right: 12.w),

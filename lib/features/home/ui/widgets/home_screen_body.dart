@@ -30,15 +30,5 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
         ],
       ),
     );
-    // return const CustomScrollView(
-    //   slivers: [
-    //     SliverToBoxAdapter(
-    //       child: CategoriesSection(),
-    //     ),
-    //     SliverFillRemaining(
-    //       child: HomeBooksListView(),
-    //     )
-    //   ],
-    // );
   }
 }

@@ -1,10 +1,10 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mrcode/features/home/logic/cubit/get_books_cubit.dart';
 import 'package:mrcode/features/home/ui/widgets/home_book_item.dart';
+import 'package:mrcode/features/home/ui/widgets/home_shimmer_loading.dart';
 
 class HomeBooksListView extends StatelessWidget {
   const HomeBooksListView({super.key});
@@ -16,14 +16,12 @@ class HomeBooksListView extends StatelessWidget {
       child: BlocBuilder<GetBooksCubit, GetBooksState>(
         builder: (context, state) {
           if (state is GetBooksSuccess) {
-            log('Books length: ${state.books!.length}');
             return ListView.builder(
               clipBehavior: Clip.none,
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: state.books!.length,
               itemBuilder: (context, index) {
-                log('Index: $index');
                 return HomeBookItem(
                   bookModel: state.books![index],
                 );
@@ -34,7 +32,7 @@ class HomeBooksListView extends StatelessWidget {
               child: Text(state.errMessage ?? 'Error'),
             );
           } else {
-            return const CircularProgressIndicator();
+            return const HomeShimmerLoading();
           }
         },
       ),
