@@ -10,11 +10,25 @@ class CategoriesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> titles = [
+      "flutter",
+      "dart",
+      "react",
+      "java",
+      "c++",
+      "c",
+      "c#",
+      "js",
+      "angular",
+      'my sql',
+    ];
+
+    
     return SizedBox(
       height: 105.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
+        itemCount: titles.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(right: 12.w),
@@ -36,11 +50,11 @@ class CategoriesListView extends StatelessWidget {
                     ],
                   ),
                   padding: const EdgeInsets.all(15),
-                  child: const FlutterLogo(),
+                  child: Image.asset('assets/images/${titles[index]}_logo.png'),
                 ),
                 verticalSpace(7),
                 Text(
-                  'Flutter',
+                  titles[index].toUpperCase(),
                   style: AppStyles.font16Black500Weight,
                 ),
               ],
