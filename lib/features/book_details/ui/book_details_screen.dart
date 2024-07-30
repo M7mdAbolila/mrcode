@@ -1,16 +1,22 @@
+import 'dart:developer';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mrcode/core/helpers/lauch_url.dart';
 import 'package:mrcode/core/helpers/spacing.dart';
 import 'package:mrcode/core/theme/styles.dart';
+import 'package:mrcode/core/widgets/custome_button.dart';
 import 'package:mrcode/features/book_details/ui/widgets/book_info.dart';
 import 'package:mrcode/features/book_details/ui/widgets/build_divider.dart';
+import 'package:mrcode/features/home/data/models/get_books_response.dart';
 
 class BookDetailsScreen extends StatelessWidget {
   const BookDetailsScreen({
     super.key,
-    required this.tag,
+    required this.bookModel,
   });
-  final String? tag;
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,20 +31,17 @@ class BookDetailsScreen extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: Text(
-                'Harry Potter',
+                bookModel.volumeInfo!.title!,
                 style: AppStyles.font20White700Weight,
               ),
-              background: Hero(
-                tag: tag!,
-                child: Container(
-                  padding: const EdgeInsets.all(65),
-                  color: Colors.grey[800],
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.r),
-                    child: Image.asset(
-                      'assets/images/test.jpg',
-                      fit: BoxFit.fill,
-                    ),
+              background: Container(
+                padding: const EdgeInsets.all(65),
+                color: Colors.grey[800],
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.r),
+                  child: CachedNetworkImage(
+                    imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
@@ -54,19 +57,31 @@ class BookDetailsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const BookInfo(
-                          title: 'Title : ', value: 'Programming in Go'),
+                      BookInfo(
+                        title: 'Title : ',
+                        value: bookModel.volumeInfo!.title!,
+                      ),
                       const BuildDivider(endIndent: 290),
-                      const BookInfo(
-                          title: 'Author : ', value: 'Stephen G. Kochan'),
+                      BookInfo(
+                        title: 'Author : ',
+                        value: bookModel.volumeInfo!.authors![0],
+                      ),
                       const BuildDivider(endIndent: 275),
-                      const BookInfo(
+                      BookInfo(
                         title: 'Description : ',
-                        value:
-                            'Programming in C will teach you how to write programs in the C programming language. Whether you’re a novice or experienced programmer, this book will provide you with a clear understanding of this language, which is the foundation for many object-oriented programming languages such as C++, Objective-C, C#, and Java. This book teaches C by example, with complete C programs used to illustrate each new concept along the way. Stephen Kochan provides step-by-step explanations for all C functions. You will learn both the language fundamentals and good programming practices. Exercises at the end of each chapter make the book ideally suited for classroom use or for self-instruction. All the features of the C language are covered in this book, including the latest additions added with the C11 standard. Appendixes provide a detailed summary of the language and the standard C library, both organized for quick reference. “Absolutely the best book for anyone starting out programming in C. This is an excellent introductory text with frequent examples and good text....This is the book I used to learn C–it’s a great book.” –Vinit S. Carpenter, Learn C/C++ Today',
+                        value: bookModel.volumeInfo!.description!,
                       ),
                       const BuildDivider(endIndent: 245),
-                      verticalSpace(400),
+                      verticalSpace(70),
+                      CustomButton(
+                        text: 'Preview',
+                        onPressed: () {
+                          log(bookModel.volumeInfo!.previewLink!);
+                          launchCustomUrl(
+                              context, bookModel.volumeInfo!.previewLink!);
+                        },
+                      ),
+                      verticalSpace(500),
                     ],
                   ),
                 ),

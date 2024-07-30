@@ -34,6 +34,7 @@ class VolumeInfo {
   String? description;
   int? pageCount;
   BookImage? imageLinks;
+  String? previewLink;
   VolumeInfo(
     this.title,
     this.authors,

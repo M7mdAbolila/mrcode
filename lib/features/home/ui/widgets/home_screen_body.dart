@@ -15,21 +15,20 @@ class HomeScreenBody extends StatefulWidget {
 class _HomeScreenBodyState extends State<HomeScreenBody> {
   @override
   void initState() {
-    context.read<GetBooksCubit>().getBooks();
+    context.read<GetBooksCubit>().getBooks(category: 'computer science');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: CategoriesSection(),
-        ),
-        SliverFillRemaining(
-          child: HomeBooksListView(),
-        )
-      ],
+    return const SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          CategoriesSection(),
+          HomeBooksListView(),
+        ],
+      ),
     );
   }
 }
