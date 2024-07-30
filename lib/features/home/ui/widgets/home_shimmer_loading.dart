@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mrcode/core/helpers/spacing.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomeShimmerLoading extends StatelessWidget {
-  const HomeShimmerLoading({super.key});
+class BookItemShimmerLoading extends StatelessWidget {
+  const BookItemShimmerLoading({super.key});
 
   @override
   Widget build(BuildContext context) {

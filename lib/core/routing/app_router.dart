@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mrcode/core/di/dependency_injection.dart';
 import 'package:mrcode/core/routing/routes.dart';
+import 'package:mrcode/features/category/ui/category_screen.dart';
 import 'package:mrcode/features/home/data/models/get_books_response.dart';
 import 'package:mrcode/features/home/logic/cubit/get_books_cubit.dart';
 
@@ -40,6 +41,14 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BookDetailsScreen(
             bookModel: bookModel,
+          ),
+        );
+      case Routes.categoryScreen:
+        final String categoryTitle = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => GetBooksCubit(getIt()),
+            child: CategoryScreen(categoryTitle: categoryTitle),
           ),
         );
       default:

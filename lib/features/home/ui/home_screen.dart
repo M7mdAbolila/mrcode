@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mrcode/core/theme/styles.dart';
 
+import '../../../core/theme/colors.dart';
 import 'widgets/home_screen_body.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: AppColors.blue,
         title: Text(
           'MrCode',
           style: AppStyles.font20White700Weight,

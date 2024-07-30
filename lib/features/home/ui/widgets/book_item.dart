@@ -5,11 +5,12 @@ import 'package:mrcode/core/helpers/extensions.dart';
 import 'package:mrcode/core/routing/routes.dart';
 import 'package:mrcode/core/theme/colors.dart';
 import 'package:mrcode/core/theme/styles.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../data/models/get_books_response.dart';
 
-class HomeBookItem extends StatelessWidget {
-  const HomeBookItem({
+class BookItem extends StatelessWidget {
+  const BookItem({
     super.key,
     required this.bookModel,
   });
@@ -19,7 +20,8 @@ class HomeBookItem extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 55.h),
       child: GestureDetector(
-        onTap: () => context.pushNamed(Routes.bookDetailsScreen,arguments: bookModel),
+        onTap: () =>
+            context.pushNamed(Routes.bookDetailsScreen, arguments: bookModel),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
@@ -41,6 +43,17 @@ class HomeBookItem extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
                     width: 100.w,
+                    height: 155.h,
+                    fit: BoxFit.fill,
+                    placeholder: (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.grey.shade300,
+                      highlightColor: Colors.white,
+                      child: Container(
+                        color: AppColors.blue,
+                        width: 100.w,
+                        height: 155.h,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -61,7 +74,7 @@ class HomeBookItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    bookModel.volumeInfo!.authors![0],
+                    bookModel.volumeInfo?.authors?[0] ?? 'Author Null',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: AppStyles.font16Black500Weight,
