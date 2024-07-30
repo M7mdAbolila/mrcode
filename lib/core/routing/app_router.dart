@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mrcode/core/di/dependency_injection.dart';
 import 'package:mrcode/core/routing/routes.dart';
+import 'package:mrcode/features/home/data/models/get_books_response.dart';
 import 'package:mrcode/features/home/logic/cubit/get_books_cubit.dart';
 
 import '../../features/book_details/ui/book_details_screen.dart';
@@ -35,8 +36,11 @@ class AppRouter {
           builder: (_) => const OnboardingScreen(),
         );
       case Routes.bookDetailsScreen:
+        final BookModel bookModel = settings.arguments as BookModel;
         return MaterialPageRoute(
-          builder: (_) => const BookDetailsScreen(),
+          builder: (_) => BookDetailsScreen(
+            bookModel: bookModel,
+          ),
         );
       default:
         return null;

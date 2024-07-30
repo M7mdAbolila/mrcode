@@ -39,7 +39,7 @@ VolumeInfo _$VolumeInfoFromJson(Map<String, dynamic> json) => VolumeInfo(
       json['imageLinks'] == null
           ? null
           : BookImage.fromJson(json['imageLinks'] as Map<String, dynamic>),
-    );
+    )..previewLink = json['previewLink'] as String?;
 
 Map<String, dynamic> _$VolumeInfoToJson(VolumeInfo instance) =>
     <String, dynamic>{
@@ -49,6 +49,7 @@ Map<String, dynamic> _$VolumeInfoToJson(VolumeInfo instance) =>
       'description': instance.description,
       'pageCount': instance.pageCount,
       'imageLinks': instance.imageLinks,
+      'previewLink': instance.previewLink,
     };
 
 BookImage _$BookImageFromJson(Map<String, dynamic> json) => BookImage(

@@ -19,7 +19,7 @@ class HomeBookItem extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 55.h),
       child: GestureDetector(
-        onTap: () => context.pushNamed(Routes.bookDetailsScreen),
+        onTap: () => context.pushNamed(Routes.bookDetailsScreen,arguments: bookModel),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
