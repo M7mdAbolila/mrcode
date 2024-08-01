@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mrcode/features/login/logic/cubit/login_cubit.dart';
 
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/widgets/app_text_field.dart';
@@ -16,6 +18,7 @@ class _UsernameAndPasswordState extends State<UsernameAndPassword> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: context.read<LoginCubit>().loginFormKey,
       child: Column(
         children: [
           AppTextFormField(
@@ -26,6 +29,7 @@ class _UsernameAndPasswordState extends State<UsernameAndPassword> {
                 return 'Enter valid email';
               }
             },
+            controller: context.read<LoginCubit>().emailController,
           ),
           verticalSpace(25),
           AppTextFormField(
@@ -47,6 +51,7 @@ class _UsernameAndPasswordState extends State<UsernameAndPassword> {
                 return 'Enter valid password';
               }
             },
+            controller: context.read<LoginCubit>().passwordController,
           ),
         ],
       ),

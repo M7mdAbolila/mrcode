@@ -4,8 +4,8 @@ import 'package:mrcode/core/theme/styles.dart';
 
 import '../../../../core/routing/routes.dart';
 
-class DontHaveAccont extends StatelessWidget {
-  const DontHaveAccont({super.key});
+class DontHaveAccount extends StatelessWidget {
+  const DontHaveAccount({super.key});
 
   @override
   Widget build(BuildContext context) {

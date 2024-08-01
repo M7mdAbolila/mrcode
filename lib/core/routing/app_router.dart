@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mrcode/core/routing/routes.dart';
+import 'package:mrcode/features/login/logic/cubit/login_cubit.dart';
 import 'package:mrcode/features/signup/logic/cubit/signup_cubit.dart';
 
 import '../../features/home/ui/home_screen.dart';
@@ -15,7 +16,10 @@ class AppRouter {
     switch (settings.name) {
       case Routes.loginScreen:
         return MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => LoginCubit(),
+            child: const LoginScreen(),
+          ),
         );
       case Routes.signupScreen:
         return MaterialPageRoute(

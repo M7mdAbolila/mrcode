@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mrcode/core/helpers/extensions.dart';
 import 'package:mrcode/core/helpers/spacing.dart';
 import 'package:mrcode/core/theme/styles.dart';
@@ -26,22 +27,18 @@ class SignupScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 30.w),
           child: Column(
             children: [
-              verticalSpace(35),
+              SvgPicture.asset(
+                'assets/svgs/signup.svg',
+                width: 200.w,
+              ),
               Text(
                 "Great to see you here!",
                 style: AppStyles.font26Blue700Weight,
               ),
-              SizedBox(
-                width: 220.w,
-                child: Text(
-                  "Let's set up your account in just a couple of steps",
-                  style: AppStyles.font16Black400Weight,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              verticalSpace(35),
+
+              verticalSpace(25),
               const SignupForm(),
-              verticalSpace(50),
+              verticalSpace(40),
               AuthButton(
                 text: 'Sign Up',
                 onTap: () {
