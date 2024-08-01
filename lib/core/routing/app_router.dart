@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mrcode/core/di/dependency_injection.dart';
 import 'package:mrcode/core/routing/routes.dart';
+import 'package:mrcode/features/login/logic/cubit/login_cubit.dart';
+import 'package:mrcode/features/signup/logic/cubit/signup_cubit.dart';
 import 'package:mrcode/features/category/ui/category_screen.dart';
 import 'package:mrcode/features/home/data/models/get_books_response.dart';
 import 'package:mrcode/features/home/logic/cubit/get_books_cubit.dart';
@@ -19,11 +21,17 @@ class AppRouter {
     switch (settings.name) {
       case Routes.loginScreen:
         return MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => LoginCubit(),
+            child: const LoginScreen(),
+          ),
         );
       case Routes.signupScreen:
         return MaterialPageRoute(
-          builder: (_) => const SignupScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => SignupCubit(),
+            child: const SignupScreen(),
+          ),
         );
       case Routes.homeScreen:
         return MaterialPageRoute(

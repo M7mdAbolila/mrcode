@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mrcode/features/signup/logic/cubit/signup_cubit.dart';
 
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/widgets/app_text_field.dart';
@@ -17,6 +19,7 @@ class _SignupFormState extends State<SignupForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: context.read<SignupCubit>().signupFormKey,
       child: Column(
         children: [
           AppTextFormField(
@@ -27,6 +30,7 @@ class _SignupFormState extends State<SignupForm> {
                 return 'Enter valid email';
               }
             },
+            controller: context.read<SignupCubit>().emailController,
           ),
           verticalSpace(20),
           AppTextFormField(
@@ -48,11 +52,14 @@ class _SignupFormState extends State<SignupForm> {
                 return 'Enter valid password';
               }
             },
+            controller: context.read<SignupCubit>().passwordController,
           ),
           verticalSpace(20),
           AppTextFormField(
             hintText: "Confirm password",
             isObscureText: confirmtIsObscureText,
+            controller:
+                context.read<SignupCubit>().passwordConfirmationController,
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
@@ -64,7 +71,13 @@ class _SignupFormState extends State<SignupForm> {
               ),
             ),
             validator: (value) {
-              if (value == null || value.isEmpty) {
+              if (value == null ||
+                  value.isEmpty ||
+                  context
+                          .read<SignupCubit>()
+                          .passwordConfirmationController 
+                          .text !=
+                      context.read<SignupCubit>().passwordController.text) {
                 return 'Password confirmation does not match';
               }
             },
