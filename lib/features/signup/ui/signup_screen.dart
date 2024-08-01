@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mrcode/core/helpers/extensions.dart';
 import 'package:mrcode/core/helpers/spacing.dart';
-import 'package:mrcode/core/routing/routes.dart';
 import 'package:mrcode/core/theme/styles.dart';
 import 'package:mrcode/core/widgets/custom_scaffold.dart';
 import 'package:mrcode/features/login/ui/widgets/auth_button.dart';
 import 'package:mrcode/features/signup/ui/widgets/have_account_text.dart';
+import 'package:mrcode/features/signup/ui/widgets/signup_bloc_listener.dart';
 import 'package:mrcode/features/signup/ui/widgets/signup_form.dart';
-import 'package:mrcode/features/signup/ui/widgets/social_media_signup.dart';
+
+import '../logic/cubit/signup_cubit.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -42,13 +44,25 @@ class SignupScreen extends StatelessWidget {
               verticalSpace(50),
               AuthButton(
                 text: 'Sign Up',
-                onTap: () => context.pushReplacementNamed(Routes.homeScreen),
+                onTap: () {
+                  if (context
+                      .read<SignupCubit>()
+                      .signupFormKey
+                      .currentState!
+                      .validate()) {
+                    context.read<SignupCubit>().signupWithEmailAndPassword(
+                          context.read<SignupCubit>().emailController.text,
+                          context.read<SignupCubit>().passwordController.text,
+                        );
+                  }
+                },
               ),
-              verticalSpace(30),
-              const SocialMediaSignup(),
+              // verticalSpace(30),
+              // const SocialMediaSignup(),
               verticalSpace(30),
               const HaveAnAccountText(),
-              verticalSpace(150),
+              const SignupBlocListener(),
+              verticalSpace(200),
             ],
           ),
         ),
