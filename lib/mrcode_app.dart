@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mrcode/core/helpers/constants.dart';
 import 'package:mrcode/core/routing/routes.dart';
 
 import 'core/routing/app_router.dart';
@@ -20,7 +21,8 @@ class MrcodeApp extends StatelessWidget {
           fontFamily: 'Quicksand',
         ),
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.onboardingScreen,
+        initialRoute:
+            isLoggedInUser ? Routes.homeScreen : Routes.onboardingScreen,
       ),
     );
   }

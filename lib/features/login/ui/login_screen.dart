@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
               ),
               verticalSpace(40),
               const UsernameAndPassword(),
-              verticalSpace(70),
+              verticalSpace(50),
               AuthButton(
                 text: 'Sign in',
                 onTap: () {
