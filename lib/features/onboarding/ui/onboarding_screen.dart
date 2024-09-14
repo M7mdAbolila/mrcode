@@ -38,8 +38,7 @@ class OnboardingScreen extends StatelessWidget {
               verticalSpace(100),
               CustomButton(
                 text: 'Discover',
-                onPressed: () =>
-                    context.pushReplacementNamed(Routes.loginScreen),
+                onPressed: () => context.pushNamed(Routes.loginScreen),
               ),
             ],
           ),
