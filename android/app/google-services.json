@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "822702488630",
+    "project_id": "mrcode-d47a5",
+    "storage_bucket": "mrcode-d47a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822702488630:android:f7097023fce5f4f4576c97",
+        "android_client_info": {
+          "package_name": "com.example.mrcode"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXrXHBD4KgpLFw3NbFmnbm5IjH-Ut_WT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
